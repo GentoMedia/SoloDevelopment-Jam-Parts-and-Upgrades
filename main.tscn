@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=3 uid="uid://tmy4tqognhxm"]
+
+[ext_resource type="Texture2D" uid="uid://cx5dehsyybnlk" path="res://Assets/Prototype Texture.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cjv6isj0duwi3" path="res://Scripts/player.gd" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cdr1byti28pae" path="res://Assets/Characters/platformerPack_character.png" id="2_h2yge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
+sky_top_color = Color(6.33401e-05, 0.341348, 0.964184, 1)
+sky_horizon_color = Color(0.745846, 1.03177, 1.01266, 1)
+ground_bottom_color = Color(0, 0.802402, 0.103155, 1)
+ground_horizon_color = Color(0.745846, 1.03177, 1.01266, 1)
+energy_multiplier = 1.2
+
+[sub_resource type="Sky" id="Sky_lquwl"]
+sky_material = SubResource("ProceduralSkyMaterial_1bvp3")
+
+[sub_resource type="Environment" id="Environment_7mycd"]
+background_mode = 2
+sky = SubResource("Sky_lquwl")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+albedo_texture = ExtResource("1_0xm2m")
+uv1_triplanar = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
+radius = 0.343113
+height = 0.774084
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
+atlas = ExtResource("2_h2yge")
+region = Rect2(288, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
+atlas = ExtResource("2_h2yge")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
+atlas = ExtResource("2_h2yge")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
+atlas = ExtResource("2_h2yge")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_272bh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2yge")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 0.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bvp3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lquwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mycd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="Main" type="Node3D"]
+
+[node name="Prototype" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Prototype"]
+environment = SubResource("Environment_7mycd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Prototype"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 25, 0)
+light_color = Color(1, 0.930845, 0.744205, 1)
+shadow_enabled = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Prototype"]
+material_override = SubResource("StandardMaterial3D_272bh")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Prototype/CSGCombiner3D"]
+size = Vector3(32, 1, 32)
+
+[node name="Player" type="CharacterBody3D" parent="Prototype"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_1bvp3")
+speed = 4.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Prototype/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+shape = SubResource("CapsuleShape3D_0xm2m")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Prototype/Player"]
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_272bh")
+animation = &"walk"
+frame_progress = 0.723721
+
+[node name="Camera3D" type="Camera3D" parent="Prototype"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.17376, 2.98821)
+fov = 80.0
