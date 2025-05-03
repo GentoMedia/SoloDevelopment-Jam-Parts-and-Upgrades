@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://tmy4tqognhxm"]
+[gd_scene load_steps=16 format=3 uid="uid://tmy4tqognhxm"]
 
 [ext_resource type="Texture2D" uid="uid://cx5dehsyybnlk" path="res://Assets/Prototype Texture.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dkjpqbdvcfj7l" path="res://main.gd" id="1_kek77"]
 [ext_resource type="Script" uid="uid://cjv6isj0duwi3" path="res://Scripts/player.gd" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://cdr1byti28pae" path="res://Assets/Characters/platformerPack_character.png" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bh2hs4b1d6n73" path="res://Scenes/parts.tscn" id="5_lquwl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
 sky_top_color = Color(6.33401e-05, 0.341348, 0.964184, 1)
@@ -74,6 +76,7 @@ animations = [{
 }]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_kek77")
 
 [node name="Prototype" type="Node3D" parent="."]
 
@@ -92,7 +95,7 @@ use_collision = true
 [node name="CSGBox3D" type="CSGBox3D" parent="Prototype/CSGCombiner3D"]
 size = Vector3(32, 1, 32)
 
-[node name="Player" type="CharacterBody3D" parent="Prototype"]
+[node name="Player" type="CharacterBody3D" parent="Prototype" groups=["Collector"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_1bvp3")
 speed = 4.0
@@ -110,3 +113,6 @@ frame_progress = 0.723721
 [node name="Camera3D" type="Camera3D" parent="Prototype"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.17376, 2.98821)
 fov = 80.0
+
+[node name="Parts" parent="Prototype" instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 1)
