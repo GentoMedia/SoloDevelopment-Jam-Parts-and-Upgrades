@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var speed = 5.0
 
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -28,4 +29,12 @@ func _physics_process(delta: float) -> void:
 	if velocity.x < 0:
 		$AnimatedSprite3D.flip_h = true
 
+	if Input.is_action_just_pressed("ui_accept"):
+		hit_object()
+
 	move_and_slide()
+
+func hit_object():
+	if $AnimatedSprite3D.flip_h:
+		pass
+			

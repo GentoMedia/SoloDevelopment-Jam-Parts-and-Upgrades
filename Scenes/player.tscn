@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://c12cssp6ck5bw"]
+
+[ext_resource type="Script" uid="uid://cjv6isj0duwi3" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://cdr1byti28pae" path="res://Assets/Characters/platformerPack_character.png" id="2_6t5aa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
+radius = 0.343113
+height = 0.774084
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(288, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_272bh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2yge")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 0.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bvp3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lquwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mycd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cvnsp"]
+height = 1.0
+radius = 0.25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6t5aa"]
+height = 1.0
+radius = 0.25
+
+[node name="Player" type="CharacterBody3D" groups=["Collector"]]
+script = ExtResource("1_cvnsp")
+speed = 4.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+shape = SubResource("CapsuleShape3D_0xm2m")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_272bh")
+animation = &"walk"
+frame_progress = 0.723721
+
+[node name="HitRight" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitRight"]
+shape = SubResource("CylinderShape3D_cvnsp")
+
+[node name="HitLeft" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitLeft"]
+shape = SubResource("CylinderShape3D_6t5aa")
