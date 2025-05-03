@@ -1,12 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbc3bmu5diy5g"]
+[gd_scene load_steps=10 format=3 uid="uid://cbc3bmu5diy5g"]
 
 [ext_resource type="Script" uid="uid://dg76lqy2txmtv" path="res://Scripts/machines.gd" id="1_nmd0n"]
-[ext_resource type="PackedScene" uid="uid://piqkba58rjtm" path="res://Assets/Kitchen/fridge_A.gltf" id="2_jjiis"]
-[ext_resource type="PackedScene" uid="uid://clxcaw75ilk62" path="res://Assets/Kitchen/fridge_B.gltf" id="3_pyeor"]
-[ext_resource type="PackedScene" uid="uid://dk1n5xqcqwknn" path="res://Assets/Kitchen/menu.gltf" id="4_2ji7t"]
-[ext_resource type="PackedScene" uid="uid://b3le10u2klgpl" path="res://Assets/Kitchen/oven.gltf" id="5_1am7h"]
-[ext_resource type="PackedScene" uid="uid://djkifp6uh173l" path="res://Assets/Kitchen/stove_multi.gltf" id="6_u75sx"]
-[ext_resource type="PackedScene" uid="uid://c3vy1rl54imyn" path="res://Assets/Kitchen/stove_single.gltf" id="7_rs7h4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_272bh"]
 
@@ -36,10 +30,33 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Machines:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_efxa6"]
 resource_name = "destroy"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,10 +76,10 @@ tracks/1/path = NodePath("CPUParticles3D:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -71,12 +88,40 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nmd0n"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Machines:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ycdy4"]
@@ -87,6 +132,7 @@ length = 0.001
 _data = {
 &"RESET": SubResource("Animation_dg77c"),
 &"destroy": SubResource("Animation_efxa6"),
+&"hit": SubResource("Animation_nmd0n"),
 &"normal": SubResource("Animation_ycdy4")
 }
 
@@ -95,39 +141,15 @@ albedo_color = Color(0.77084, 0.770839, 0.770839, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_dg77c"]
 material = SubResource("StandardMaterial3D_efxa6")
-size = Vector3(0.25, 0.25, 0.25)
+size = Vector3(0.2, 0.2, 0.1)
 
-[node name="Machines" type="StaticBody3D"]
+[node name="Machines" type="StaticBody3D" groups=["Destroyable"]]
 script = ExtResource("1_nmd0n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_272bh")
 
 [node name="Machines" type="Node3D" parent="."]
-
-[node name="fridge1" parent="Machines" instance=ExtResource("2_jjiis")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)
-visible = false
-
-[node name="fridge2" parent="Machines" instance=ExtResource("3_pyeor")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)
-visible = false
-
-[node name="menu" parent="Machines" instance=ExtResource("4_2ji7t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-visible = false
-
-[node name="oven" parent="Machines" instance=ExtResource("5_1am7h")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)
-visible = false
-
-[node name="stove1" parent="Machines" instance=ExtResource("6_u75sx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)
-visible = false
-
-[node name="stove2" parent="Machines" instance=ExtResource("7_rs7h4")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)
-visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -136,7 +158,6 @@ libraries = {
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
 emitting = false
-amount = 16
 lifetime = 0.42
 mesh = SubResource("PrismMesh_dg77c")
 emission_shape = 1
@@ -149,3 +170,4 @@ initial_velocity_min = 2.0
 initial_velocity_max = 4.0
 angular_velocity_min = 425.97
 angular_velocity_max = 720.0
+scale_amount_max = 1.5

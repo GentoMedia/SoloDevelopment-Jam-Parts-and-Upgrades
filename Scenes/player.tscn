@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c12cssp6ck5bw"]
+[gd_scene load_steps=12 format=3 uid="uid://c12cssp6ck5bw"]
 
 [ext_resource type="Script" uid="uid://cjv6isj0duwi3" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cdr1byti28pae" path="res://Assets/Characters/platformerPack_character.png" id="2_6t5aa"]
@@ -14,6 +14,10 @@ region = Rect2(288, 96, 96, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
 atlas = ExtResource("2_6t5aa")
 region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
 atlas = ExtResource("2_6t5aa")
@@ -40,6 +44,14 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvnsp")
+}],
+"loop": true,
+"name": &"punch",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -72,8 +84,7 @@ shape = SubResource("CapsuleShape3D_0xm2m")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_272bh")
-animation = &"walk"
-frame_progress = 0.723721
+animation = &"punch"
 
 [node name="HitRight" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
@@ -86,3 +97,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitLeft"]
 shape = SubResource("CylinderShape3D_6t5aa")
+
+[node name="PunchTimer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="body_entered" from="HitRight" to="." method="_on_hit_right_body_entered"]
+[connection signal="body_exited" from="HitRight" to="." method="_on_hit_right_body_exited"]
+[connection signal="body_entered" from="HitLeft" to="." method="_on_hit_left_body_entered"]
+[connection signal="body_exited" from="HitLeft" to="." method="_on_hit_left_body_exited"]
+[connection signal="timeout" from="PunchTimer" to="." method="_on_punch_timer_timeout"]

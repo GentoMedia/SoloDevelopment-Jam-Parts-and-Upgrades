@@ -2,8 +2,11 @@ extends CharacterBody3D
 
 
 @export var speed = 5.0
+var right_targets = []
+var left_targets = []
 
-	
+var punching = false
+var attack = 1
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -29,12 +32,48 @@ func _physics_process(delta: float) -> void:
 	if velocity.x < 0:
 		$AnimatedSprite3D.flip_h = true
 
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and !punching:
 		hit_object()
+		$AnimatedSprite3D.play("punch")
+		punching = true
+		$PunchTimer.start()
+		
+		
+
+	if punching:
+		$AnimatedSprite3D.play("punch")
 
 	move_and_slide()
 
+
 func hit_object():
 	if $AnimatedSprite3D.flip_h:
-		pass
-			
+		for body in left_targets:
+			body.hit_machine(attack)
+	else:
+		for body in right_targets:
+			body.hit_machine(attack)
+
+
+func _on_hit_right_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Destroyable"):
+		right_targets.append(body)
+
+
+func _on_hit_right_body_exited(body: Node3D) -> void:
+	if body.is_in_group("Destroyable"):
+		right_targets.erase(body)
+
+
+func _on_hit_left_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Destroyable"):
+		left_targets.append(body)
+
+
+func _on_hit_left_body_exited(body: Node3D) -> void:
+	if body.is_in_group("Destroyable"):
+		left_targets.erase(body)
+
+
+func _on_punch_timer_timeout() -> void:
+	punching = false
