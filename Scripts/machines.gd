@@ -18,7 +18,7 @@ var counters = [
 	"res://Assets/Kitchen/kitchencounter_straight_decorated.gltf"
 ]
 
-var health = 4
+var health = 5
 @onready var parts = preload("res://Scenes/parts.tscn")
 
 func _ready() -> void:

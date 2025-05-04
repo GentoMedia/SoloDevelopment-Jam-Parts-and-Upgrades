@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://caf7e0f235amn"]
+[gd_scene load_steps=45 format=3 uid="uid://caf7e0f235amn"]
 
 [ext_resource type="Script" uid="uid://dcxo47vi4jqa7" path="res://Scripts/garden.gd" id="1_xq240"]
 [ext_resource type="MeshLibrary" uid="uid://cyqarjptmbdn" path="res://Scenes/GameMeshLibrary.tres" id="1_ynvo8"]
@@ -57,6 +57,18 @@ size = Vector2(16, 8)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ivbus"]
 radius = 0.444336
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ystxh"]
+height = 0.5
+radius = 0.282715
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_324xe"]
+height = 1.20215
+radius = 0.527344
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_k5qci"]
+height = 0.5
+radius = 0.287598
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_xq240"]
 size = Vector3(3.88336, 1, 1.24377)
 
@@ -71,6 +83,36 @@ disable_receive_shadows = true
 [sub_resource type="BoxMesh" id="BoxMesh_utk03"]
 material = SubResource("StandardMaterial3D_6lr3m")
 size = Vector3(0.15, 0.15, 0.15)
+
+[sub_resource type="Animation" id="Animation_iyy26"]
+resource_name = "Hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.9, 0.9, 0.9), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_animation"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_324xe"]
 resource_name = "Normal"
@@ -114,36 +156,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_iyy26"]
-resource_name = "Hit"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.9, 0.9, 0.9), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"reset_animation"
-}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6rgxs"]
@@ -281,11 +293,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 [node name="PlayerAttack" parent="UpgradeSpot" instance=ExtResource("16_62yoy")]
 transform = Transform3D(0.982097, 0, -0.188376, 0, 1, 0, 0.188376, 0, 0.982097, -1.5, -0.1, 0.2)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="UpgradeSpot/PlayerAttack"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpgradeSpot/PlayerAttack/StaticBody3D"]
+transform = Transform3D(1, 0, -7.45058e-08, 0, 1, 0, 7.45058e-08, 0, 1, 0.0220001, 0.365107, -0.027)
+shape = SubResource("CylinderShape3D_ystxh")
+
 [node name="RobotEfficiency" parent="UpgradeSpot" instance=ExtResource("17_dw4ua")]
 transform = Transform3D(0.044016, 0, -0.598383, 0, 0.6, 0, 0.598383, 0, 0.044016, -0.0335426, -0.1, -0.2)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="UpgradeSpot/RobotEfficiency"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpgradeSpot/RobotEfficiency/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00693512, 0.601074, -0.0942829)
+shape = SubResource("CylinderShape3D_324xe")
+
 [node name="PlayerSpeed" parent="UpgradeSpot" instance=ExtResource("16_6lr3m")]
 transform = Transform3D(0.888689, 0, -0.45851, 0, 1, 0, 0.45851, 0, 0.888689, 1.5, -0.1, 0.2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="UpgradeSpot/PlayerSpeed"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpgradeSpot/PlayerSpeed/StaticBody3D"]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, -0.02, 0.350856, 0.0100002)
+shape = SubResource("CylinderShape3D_k5qci")
 
 [node name="Area3D" type="Area3D" parent="UpgradeSpot"]
 
@@ -293,7 +329,7 @@ transform = Transform3D(0.888689, 0, -0.45851, 0, 1, 0, 0.45851, 0, 0.888689, 1.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0602112, 0, 0.175598)
 shape = SubResource("BoxShape3D_xq240")
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="UpgradeSpot"]
+[node name="UpgradeIndicator" type="CPUParticles3D" parent="UpgradeSpot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.614854, -0.214579)
 visible = false
 cast_shadow = 0

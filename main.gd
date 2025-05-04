@@ -3,7 +3,6 @@ extends Node3D
 var materials = {"parts":0, "rubber":0, "oil":0, "water":0}
 var upgrades = 0
 var time_to_upgrade = 60
-var upgrade_available = false
 
 func _ready() -> void:
 	time_to_upgrade = 60 * (upgrades + 1)
@@ -21,13 +20,13 @@ func update_materials(resource : String, amount : int):
 
 
 func _on_timer_timeout() -> void:
-	if !upgrade_available:
+	if !$Garden/UpgradeSpot/UpgradeIndicator.visible:
 		var weeds = $Garden/Ground/Weeds.get_child_count()
 		if randi_range(1, maxi(1, time_to_upgrade)) > weeds:
 			time_to_upgrade -= 1
 		if time_to_upgrade <= 0:
 			time_to_upgrade = 0
-			upgrade_available = true
+			$Garden/UpgradeSpot/UpgradeIndicator.visible = true
 		$HUD/ProgressBar.value = (1 - time_to_upgrade/(float(60*(upgrades+1))))*100
 	
 	if randi_range(1, 10 + upgrades) >= 10:
