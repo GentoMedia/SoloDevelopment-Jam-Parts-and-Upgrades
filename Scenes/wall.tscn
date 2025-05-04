@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvfc58fe0dswt"]
+
+[ext_resource type="PackedScene" uid="uid://bn5wsag8neftu" path="res://Assets/Kitchen/wall.gltf" id="1_d155t"]
+[ext_resource type="PackedScene" uid="uid://cukwskxythv61" path="res://Assets/Kitchen/wall_doorway.gltf" id="2_yjehn"]
+[ext_resource type="PackedScene" uid="uid://chvbw5pu4ugsj" path="res://Assets/Kitchen/wall_window_open.gltf" id="3_m8ojb"]
+[ext_resource type="PackedScene" uid="uid://tt55kfs4rq8h" path="res://Assets/Kitchen/floor_kitchen_small.gltf" id="4_0dv0i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d155t"]
+size = Vector3(4, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yjehn"]
+size = Vector3(1.159, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0dv0i"]
+size = Vector3(4, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xsiy"]
+size = Vector3(2, 0.5, 2)
+
+[node name="LevelBuilder" type="Node3D"]
+
+[node name="MainWall" parent="." instance=ExtResource("1_d155t")]
+
+[node name="wall" parent="MainWall" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MainWall/wall" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainWall/wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_d155t")
+
+[node name="Door" parent="." instance=ExtResource("2_yjehn")]
+
+[node name="wall_doorway" parent="Door" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Door/wall_doorway" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/wall_doorway/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.421, 2, 0)
+shape = SubResource("BoxShape3D_yjehn")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Door/wall_doorway/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.421, 2, 0)
+shape = SubResource("BoxShape3D_yjehn")
+
+[node name="wall_window_open2" parent="." instance=ExtResource("3_m8ojb")]
+
+[node name="wall_window_open" parent="wall_window_open2" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall_window_open2/wall_window_open" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_window_open2/wall_window_open/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_0dv0i")
+
+[node name="floor_kitchen_small2" parent="." instance=ExtResource("4_0dv0i")]
+
+[node name="floor_kitchen_small" parent="floor_kitchen_small2" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.5, 0.75, 0.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor_kitchen_small2/floor_kitchen_small" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor_kitchen_small2/floor_kitchen_small/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_0xsiy")
+
+[editable path="MainWall"]
+[editable path="Door"]
+[editable path="wall_window_open2"]
+[editable path="floor_kitchen_small2"]

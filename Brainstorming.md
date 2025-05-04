@@ -45,8 +45,8 @@ A relaxing game of destroying things for their parts and building friends for th
 	- Timer that can be sped up by building little robots
 	- 3 types of upgrades (collecting, building, tree)
 		- improve chances of parts drops x4
-		- reduce weed growth rate x4
-		- improve robot efficiency x4
+		- increase robot efficiency x4
+		- increase robot attack x4
 
 ## Pillars
 - Combining the joy of destroying things and building new things

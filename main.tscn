@@ -1,59 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://tmy4tqognhxm"]
+[gd_scene load_steps=2 format=3 uid="uid://tmy4tqognhxm"]
 
-[ext_resource type="Texture2D" uid="uid://cx5dehsyybnlk" path="res://Assets/Prototype Texture.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dkjpqbdvcfj7l" path="res://main.gd" id="1_kek77"]
-[ext_resource type="PackedScene" uid="uid://c12cssp6ck5bw" path="res://Scenes/player.tscn" id="3_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://cbc3bmu5diy5g" path="res://Scenes/machines.tscn" id="5_7mycd"]
-[ext_resource type="PackedScene" uid="uid://bh2hs4b1d6n73" path="res://Scenes/parts.tscn" id="5_lquwl"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
-sky_top_color = Color(6.33401e-05, 0.341348, 0.964184, 1)
-sky_horizon_color = Color(0.745846, 1.03177, 1.01266, 1)
-ground_bottom_color = Color(0, 0.802402, 0.103155, 1)
-ground_horizon_color = Color(0.745846, 1.03177, 1.01266, 1)
-energy_multiplier = 1.2
-
-[sub_resource type="Sky" id="Sky_lquwl"]
-sky_material = SubResource("ProceduralSkyMaterial_1bvp3")
-
-[sub_resource type="Environment" id="Environment_7mycd"]
-background_mode = 2
-sky = SubResource("Sky_lquwl")
-tonemap_mode = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
-albedo_texture = ExtResource("1_0xm2m")
-uv1_triplanar = true
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_kek77")
-
-[node name="Prototype" type="Node3D" parent="."]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Prototype"]
-environment = SubResource("Environment_7mycd")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Prototype"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 25, 0)
-light_color = Color(1, 0.930845, 0.744205, 1)
-shadow_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="Prototype"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.17376, 2.98821)
-fov = 80.0
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Prototype"]
-material_override = SubResource("StandardMaterial3D_272bh")
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Prototype/CSGCombiner3D"]
-size = Vector3(32, 1, 32)
-
-[node name="Player" parent="Prototype" instance=ExtResource("3_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Parts" parent="Prototype" instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 1)
-
-[node name="Machines" parent="." instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
