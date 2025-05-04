@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c12cssp6ck5bw"]
+[gd_scene load_steps=12 format=3 uid="uid://c12cssp6ck5bw"]
 
 [ext_resource type="Script" uid="uid://cjv6isj0duwi3" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cdr1byti28pae" path="res://Assets/Characters/platformerPack_character.png" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://deqktnnfp2t12" path="res://Assets/Characters/Robots/robot_yellowDrive1.png" id="3_6t5aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
 radius = 0.343113
@@ -69,6 +70,8 @@ animations = [{
 size = Vector3(0.5, 1, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["Collector"]]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_cvnsp")
 speed = 4.0
 
@@ -83,22 +86,27 @@ animation = &"punch"
 
 [node name="HitRight" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitRight"]
 shape = SubResource("BoxShape3D_cvnsp")
 
 [node name="HitLeft" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitLeft"]
 shape = SubResource("BoxShape3D_cvnsp")
 
 [node name="PunchTimer" type="Timer" parent="."]
 wait_time = 0.15
+
+[node name="RobotIndicator" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, 0)
+visible = false
+texture = ExtResource("3_6t5aa")
 
 [connection signal="body_entered" from="HitRight" to="." method="_on_hit_right_body_entered"]
 [connection signal="body_exited" from="HitRight" to="." method="_on_hit_right_body_exited"]

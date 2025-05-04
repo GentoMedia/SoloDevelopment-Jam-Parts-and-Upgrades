@@ -7,6 +7,7 @@ var upgrade_available = false
 
 func _ready() -> void:
 	time_to_upgrade = 60 * (upgrades + 1)
+	update_materials("parts", 0)
 	randomize()
 
 

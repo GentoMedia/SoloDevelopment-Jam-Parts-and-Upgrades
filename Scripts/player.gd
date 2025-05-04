@@ -8,6 +8,8 @@ var left_targets = []
 var punching = false
 var attack = 1
 
+@onready var robot = preload("res://Scenes/robot.tscn")
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -33,10 +35,19 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite3D.flip_h = true
 
 	if Input.is_action_pressed("ui_accept") and !punching:
-		hit_object()
-		$AnimatedSprite3D.play("punch")
-		punching = true
-		$PunchTimer.start()
+		if not $RobotIndicator.visible:
+			hit_object()
+			$AnimatedSprite3D.play("punch")
+			punching = true
+			$PunchTimer.start()
+		else:
+			var new_robot = robot.instantiate()
+			get_node("/root/Main/Garden/Robots").add_child(new_robot)
+			if $AnimatedSprite3D.flip_h:
+				new_robot.position = position + Vector3(-1, 0 ,0)
+			else:
+				new_robot.position = position + Vector3(1, 0 ,0)
+			$RobotIndicator.visible = false
 		
 		
 
@@ -45,33 +56,42 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
+	
 func hit_object():
 	if $AnimatedSprite3D.flip_h:
 		for body in left_targets:
-			body.hit_machine(attack)
+			if body.is_in_group("Destroyable"):
+				body.hit_machine(attack)
+			if body.is_in_group("Robot") and not $RobotIndicator.visible:
+				body.queue_free()
+				$RobotIndicator.visible = true
 	else:
 		for body in right_targets:
-			body.hit_machine(attack)
+			if body.is_in_group("Destroyable"):
+				body.hit_machine(attack)
+			if body.is_in_group("Robot") and not $RobotIndicator.visible:
+				body.queue_free()
+				$RobotIndicator.visible = true
+				
 
 
 func _on_hit_right_body_entered(body: Node3D) -> void:
-	if body.is_in_group("Destroyable"):
+	if body.is_in_group("Destroyable") or body.is_in_group("Robot"):
 		right_targets.append(body)
 
 
 func _on_hit_right_body_exited(body: Node3D) -> void:
-	if body.is_in_group("Destroyable"):
+	if body.is_in_group("Destroyable") or body.is_in_group("Robot"):
 		right_targets.erase(body)
 
 
 func _on_hit_left_body_entered(body: Node3D) -> void:
-	if body.is_in_group("Destroyable"):
+	if body.is_in_group("Destroyable") or body.is_in_group("Robot"):
 		left_targets.append(body)
 
 
 func _on_hit_left_body_exited(body: Node3D) -> void:
-	if body.is_in_group("Destroyable"):
+	if body.is_in_group("Destroyable") or body.is_in_group("Robot"):
 		left_targets.erase(body)
 
 
