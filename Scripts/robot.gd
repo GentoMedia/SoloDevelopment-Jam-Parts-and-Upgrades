@@ -1,30 +1,35 @@
 extends CharacterBody3D
 
-
+var robot_type = "weed"
 @export var speed = 5.0
 var right_targets = []
 var left_targets = []
 
 var punching = false
 var attack = 1
+var input_dir = Vector2(1,0)
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	if is_on_wall():
+		input_dir = Vector2(randf_range(0,1),randf_range(0,1))
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		$AnimatedSprite3D.play("walk")
+		$AnimatedSprite3D.play(robot_type)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-		$AnimatedSprite3D.play("idle")
+		$AnimatedSprite3D.pause()
 		
 	# Animation
 	if velocity.x > 0:
@@ -32,19 +37,8 @@ func _physics_process(delta: float) -> void:
 	if velocity.x < 0:
 		$AnimatedSprite3D.flip_h = true
 
-	if Input.is_action_pressed("ui_accept") and !punching:
-		hit_object()
-		$AnimatedSprite3D.play("punch")
-		punching = true
-		$PunchTimer.start()
-		
-		
-
-	if punching:
-		$AnimatedSprite3D.play("punch")
-
 	move_and_slide()
-
+		
 
 func hit_object():
 	if $AnimatedSprite3D.flip_h:
@@ -78,4 +72,8 @@ func _on_hit_left_body_exited(body: Node3D) -> void:
 func _on_punch_timer_timeout() -> void:
 	if punching:
 		punching = false
-		$AnimatedSprite3D.play("idle")
+
+func punch():
+	hit_object()
+	punching = true
+	$PunchTimer.start()

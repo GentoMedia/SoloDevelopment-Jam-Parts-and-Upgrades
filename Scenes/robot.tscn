@@ -1,76 +1,58 @@
-[gd_scene load_steps=11 format=3 uid="uid://c12cssp6ck5bw"]
+[gd_scene load_steps=11 format=3 uid="uid://v51lgu8vn4ar"]
 
-[ext_resource type="Script" uid="uid://cjv6isj0duwi3" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://cdr1byti28pae" path="res://Assets/Characters/platformerPack_character.png" id="2_6t5aa"]
+[ext_resource type="Script" uid="uid://caopfplohmjrw" path="res://Scripts/robot.gd" id="1_2vrla"]
+[ext_resource type="Texture2D" uid="uid://deqktnnfp2t12" path="res://Assets/Characters/Robots/robot_yellowDrive1.png" id="2_7cjo4"]
+[ext_resource type="Texture2D" uid="uid://brxa4rx47n2fr" path="res://Assets/Characters/Robots/robot_yellowDrive2.png" id="3_dcvsp"]
+[ext_resource type="Texture2D" uid="uid://l6mmhf2mr57h" path="res://Assets/Characters/Robots/robot_blueDrive1.png" id="4_m0m82"]
+[ext_resource type="Texture2D" uid="uid://ce6b8y4hcb7l6" path="res://Assets/Characters/Robots/robot_blueDrive2.png" id="5_pwfsi"]
+[ext_resource type="Texture2D" uid="uid://cd12ncgp27xtq" path="res://Assets/Characters/Robots/robot_redDrive1.png" id="6_rnk85"]
+[ext_resource type="Texture2D" uid="uid://bm4xltg0voxwu" path="res://Assets/Characters/Robots/robot_redDrive2.png" id="7_aseuk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
 radius = 0.343113
 height = 0.774084
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
-atlas = ExtResource("2_6t5aa")
-region = Rect2(288, 96, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
-atlas = ExtResource("2_6t5aa")
-region = Rect2(0, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
-atlas = ExtResource("2_6t5aa")
-region = Rect2(96, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
-atlas = ExtResource("2_6t5aa")
-region = Rect2(192, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
-atlas = ExtResource("2_6t5aa")
-region = Rect2(288, 0, 96, 96)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_272bh"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lp65t"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h2yge")
+"texture": ExtResource("2_7cjo4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dcvsp")
 }],
 "loop": true,
-"name": &"attack",
-"speed": 0.5
+"name": &"collect",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1bvp3")
+"texture": ExtResource("4_m0m82")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pwfsi")
 }],
 "loop": true,
-"name": &"idle",
-"speed": 0.0
+"name": &"water",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cvnsp")
-}],
-"loop": true,
-"name": &"punch",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lquwl")
+"texture": ExtResource("6_rnk85")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7mycd")
+"texture": ExtResource("7_aseuk")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"weed",
 "speed": 6.0
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cvnsp"]
 size = Vector3(0.5, 1, 1)
 
-[node name="Player" type="CharacterBody3D" groups=["Collector"]]
-script = ExtResource("1_cvnsp")
-speed = 4.0
+[node name="Robot" type="CharacterBody3D" groups=["Collector"]]
+script = ExtResource("1_2vrla")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
@@ -78,8 +60,10 @@ shape = SubResource("CapsuleShape3D_0xm2m")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 texture_filter = 0
-sprite_frames = SubResource("SpriteFrames_272bh")
-animation = &"punch"
+sprite_frames = SubResource("SpriteFrames_lp65t")
+animation = &"collect"
+frame = 1
+frame_progress = 0.84808
 
 [node name="HitRight" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)

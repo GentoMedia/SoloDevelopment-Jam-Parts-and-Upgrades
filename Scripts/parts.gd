@@ -6,8 +6,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("Powerup")
 
 func _on_body_entered(body: Node3D) -> void:
-	get_node("/root/Main").materials[material] += 1
-	print(get_node("/root/Main").materials)
+	get_node("/root/Main").update_materials(material, 1)
 	queue_free()
 
 func update_material():

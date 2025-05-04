@@ -1,0 +1,197 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfw7wqnc0k7cx"]
+
+[ext_resource type="PackedScene" uid="uid://cbc3bmu5diy5g" path="res://Scenes/machines.tscn" id="2_cxna1"]
+
+[node name="JunkSpawner" type="Node3D"]
+
+[node name="Machines" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, -3.5)
+
+[node name="Machines2" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -3.5)
+
+[node name="Machines3" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, -3.5)
+
+[node name="Machines4" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -3.5)
+
+[node name="Machines5" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -3.5)
+
+[node name="Machines6" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -3.5)
+
+[node name="Machines7" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -3.5)
+
+[node name="Machines8" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, -3.5)
+
+[node name="Machines9" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, -2.5)
+
+[node name="Machines10" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -2.5)
+
+[node name="Machines11" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, -2.5)
+
+[node name="Machines12" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -2.5)
+
+[node name="Machines13" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -2.5)
+
+[node name="Machines14" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -2.5)
+
+[node name="Machines15" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -2.5)
+
+[node name="Machines16" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, -2.5)
+
+[node name="Machines17" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, -1.5)
+
+[node name="Machines18" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -1.5)
+
+[node name="Machines19" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, -1.5)
+
+[node name="Machines20" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -1.5)
+
+[node name="Machines21" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -1.5)
+
+[node name="Machines22" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -1.5)
+
+[node name="Machines23" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -1.5)
+
+[node name="Machines24" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, -1.5)
+
+[node name="Machines25" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, -0.5)
+
+[node name="Machines26" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -0.5)
+
+[node name="Machines27" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, -0.5)
+
+[node name="Machines28" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -0.5)
+
+[node name="Machines29" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -0.5)
+
+[node name="Machines30" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -0.5)
+
+[node name="Machines31" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -0.5)
+
+[node name="Machines32" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, -0.5)
+
+[node name="Machines33" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, 0.5)
+
+[node name="Machines34" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, 0.5)
+
+[node name="Machines35" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0.5)
+
+[node name="Machines36" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0.5)
+
+[node name="Machines37" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+
+[node name="Machines38" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 0.5)
+
+[node name="Machines39" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, 0.5)
+
+[node name="Machines40" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, 0.5)
+
+[node name="Machines41" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, 1.5)
+
+[node name="Machines42" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, 1.5)
+
+[node name="Machines43" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 1.5)
+
+[node name="Machines44" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 1.5)
+
+[node name="Machines45" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 1.5)
+
+[node name="Machines46" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 1.5)
+
+[node name="Machines47" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, 1.5)
+
+[node name="Machines48" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, 1.5)
+
+[node name="Machines49" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, 2.5)
+
+[node name="Machines50" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, 2.5)
+
+[node name="Machines51" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 2.5)
+
+[node name="Machines52" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 2.5)
+
+[node name="Machines53" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 2.5)
+
+[node name="Machines54" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 2.5)
+
+[node name="Machines55" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, 2.5)
+
+[node name="Machines56" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, 2.5)
+
+[node name="Machines57" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, 3.5)
+
+[node name="Machines58" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, 3.5)
+
+[node name="Machines59" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 3.5)
+
+[node name="Machines60" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 3.5)
+
+[node name="Machines61" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 3.5)
+
+[node name="Machines62" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 3.5)
+
+[node name="Machines63" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, 3.5)
+
+[node name="Machines64" parent="." instance=ExtResource("2_cxna1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, 3.5)

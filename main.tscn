@@ -1,6 +1,98 @@
-[gd_scene load_steps=2 format=3 uid="uid://tmy4tqognhxm"]
+[gd_scene load_steps=5 format=3 uid="uid://tmy4tqognhxm"]
 
 [ext_resource type="Script" uid="uid://dkjpqbdvcfj7l" path="res://main.gd" id="1_kek77"]
+[ext_resource type="PackedScene" uid="uid://caf7e0f235amn" path="res://Scenes/garden.tscn" id="2_0xm2m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0.945312, 0, 1, 1)
 
 [node name="Main" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_kek77")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_0xm2m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h2yge")
+value = 50.0
+show_percentage = false
+
+[node name="UpgradeLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 299.0
+offset_bottom = 333.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Upgrade Tree Progress"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResourceLabels" type="HBoxContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="GearsLabel" type="Label" parent="HUD/ResourceLabels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Gear: 0"
+
+[node name="RubberLabel" type="Label" parent="HUD/ResourceLabels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Rubber: 0"
+
+[node name="OilLabel" type="Label" parent="HUD/ResourceLabels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Oil: 0"
+
+[node name="WaterLabel" type="Label" parent="HUD/ResourceLabels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Water: 0"
+
+[node name="Garden" parent="." instance=ExtResource("2_0xm2m")]
+
+[node name="GameLogic" type="Node3D" parent="."]
+process_mode = 1
+
+[node name="Timer" type="Timer" parent="GameLogic"]
+autostart = true
+
+[connection signal="timeout" from="GameLogic/Timer" to="." method="_on_timer_timeout"]

@@ -22,6 +22,9 @@ var health = 4
 @onready var parts = preload("res://Scenes/parts.tscn")
 
 func _ready() -> void:
+	if randi_range(0,2) == 0:
+		queue_free()
+	
 	var machine_scene
 	var machine
 	if randi_range(0,3)>0:
