@@ -1,13 +1,15 @@
 extends CharacterBody3D
 
-var robot_type = "weed"
-@export var speed = 5.0
+var robot_type = "collect"
+@export var speed = 1.0
 var right_targets = []
 var left_targets = []
 
 var punching = false
 var attack = 1
 var input_dir = Vector2(1,0)
+
+var target = null
 
 
 func _physics_process(delta: float) -> void:
@@ -16,7 +18,10 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	if is_on_wall():
-		input_dir = Vector2(randf_range(0,1),randf_range(0,1))
+		input_dir = Vector2(randf_range(-1.0,1.0),randf_range(-1.0,1.0))
+	elif target != null:
+		input_dir = Vector2(target.global_position.x - global_position.x,
+		target.global_position.z - global_position.z).normalized()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -38,7 +43,9 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite3D.flip_h = true
 
 	move_and_slide()
-		
+	
+	if not punching:
+		punch()
 
 func hit_object():
 	if $AnimatedSprite3D.flip_h:
@@ -47,6 +54,7 @@ func hit_object():
 	else:
 		for body in right_targets:
 			body.hit_machine(attack)
+	target = null
 
 
 func _on_hit_right_body_entered(body: Node3D) -> void:
@@ -77,3 +85,8 @@ func punch():
 	hit_object()
 	punching = true
 	$PunchTimer.start()
+
+
+func _on_detector_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Destroyable"):
+		target = body

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://caf7e0f235amn"]
+[gd_scene load_steps=33 format=3 uid="uid://caf7e0f235amn"]
 
 [ext_resource type="Script" uid="uid://dcxo47vi4jqa7" path="res://Scripts/garden.gd" id="1_xq240"]
 [ext_resource type="MeshLibrary" uid="uid://cyqarjptmbdn" path="res://Scenes/GameMeshLibrary.tres" id="1_ynvo8"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dnfglq7iuj60y" path="res://Assets/Nature/Rock_1_C_Color1.gltf" id="16_62yoy"]
 [ext_resource type="PackedScene" uid="uid://cipo48txgaqj8" path="res://Assets/Nature/Rock_1_D_Color1.gltf" id="17_dw4ua"]
 [ext_resource type="PackedScene" uid="uid://bfw7wqnc0k7cx" path="res://Scenes/junk_spawner.tscn" id="19_dw4ua"]
+[ext_resource type="PackedScene" uid="uid://v51lgu8vn4ar" path="res://Scenes/robot.tscn" id="21_w6pvk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2vb7"]
 sky_top_color = Color(6.33401e-05, 0.341348, 0.964184, 1)
@@ -245,3 +246,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -12)
 
 [node name="JunkSpawner10" parent="JunkSpawners" instance=ExtResource("19_dw4ua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -4)
+
+[node name="Robot" parent="." instance=ExtResource("21_w6pvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v51lgu8vn4ar"]
+[gd_scene load_steps=12 format=3 uid="uid://v51lgu8vn4ar"]
 
 [ext_resource type="Script" uid="uid://caopfplohmjrw" path="res://Scripts/robot.gd" id="1_2vrla"]
 [ext_resource type="Texture2D" uid="uid://deqktnnfp2t12" path="res://Assets/Characters/Robots/robot_yellowDrive1.png" id="2_7cjo4"]
@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cd12ncgp27xtq" path="res://Assets/Characters/Robots/robot_redDrive1.png" id="6_rnk85"]
 [ext_resource type="Texture2D" uid="uid://bm4xltg0voxwu" path="res://Assets/Characters/Robots/robot_redDrive2.png" id="7_aseuk"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
-radius = 0.343113
-height = 0.774084
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7cjo4"]
+radius = 0.446284
+height = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lp65t"]
 animations = [{
@@ -51,19 +51,22 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_cvnsp"]
 size = Vector3(0.5, 1, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7cjo4"]
+height = 1.0
+radius = 3.0
+
 [node name="Robot" type="CharacterBody3D" groups=["Collector"]]
 script = ExtResource("1_2vrla")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
-shape = SubResource("CapsuleShape3D_0xm2m")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("CapsuleShape3D_7cjo4")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_lp65t")
 animation = &"collect"
-frame = 1
-frame_progress = 0.84808
 
 [node name="HitRight" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
@@ -84,8 +87,16 @@ shape = SubResource("BoxShape3D_cvnsp")
 [node name="PunchTimer" type="Timer" parent="."]
 wait_time = 0.15
 
+[node name="Detector" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detector"]
+shape = SubResource("CylinderShape3D_7cjo4")
+
 [connection signal="body_entered" from="HitRight" to="." method="_on_hit_right_body_entered"]
 [connection signal="body_exited" from="HitRight" to="." method="_on_hit_right_body_exited"]
 [connection signal="body_entered" from="HitLeft" to="." method="_on_hit_left_body_entered"]
 [connection signal="body_exited" from="HitLeft" to="." method="_on_hit_left_body_exited"]
 [connection signal="timeout" from="PunchTimer" to="." method="_on_punch_timer_timeout"]
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
