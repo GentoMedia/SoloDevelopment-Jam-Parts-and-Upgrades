@@ -1,4 +1,4 @@
 extends StaticBody3D
 
-func hit_machine(damage : int):
-	queue_free()
+func hit_machine(_damage : int):
+	$AnimationPlayer.play("hit")

@@ -34,7 +34,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_0xm2m")
 theme_override_styles/fill = SubResource("StyleBoxFlat_h2yge")
-value = 50.0
 show_percentage = false
 
 [node name="UpgradeLabel" type="Label" parent="HUD"]
@@ -95,4 +94,5 @@ process_mode = 1
 [node name="Timer" type="Timer" parent="GameLogic"]
 autostart = true
 
+[connection signal="upgraded" from="Garden" to="." method="upgrade_update"]
 [connection signal="timeout" from="GameLogic/Timer" to="." method="_on_timer_timeout"]

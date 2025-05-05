@@ -10,6 +10,8 @@ var attack = 1
 
 @onready var robot = preload("res://Scenes/robot.tscn")
 
+signal new_robots
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -48,6 +50,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				new_robot.position = position + Vector3(1, 0 ,0)
 			$RobotIndicator.visible = false
+			new_robots.emit()
 		
 		
 

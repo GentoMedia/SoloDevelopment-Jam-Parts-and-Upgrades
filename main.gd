@@ -1,11 +1,12 @@
 extends Node3D
 
+@export var upgrade_base_timer = 30
 var materials = {"parts":0, "rubber":0, "oil":0, "water":0}
 var upgrades = 0
-var time_to_upgrade = 60
+var time_to_upgrade
 
 func _ready() -> void:
-	time_to_upgrade = 60 * (upgrades + 1)
+	time_to_upgrade = upgrade_base_timer * (upgrades + 1)
 	update_materials("parts", 0)
 	randomize()
 
@@ -27,7 +28,12 @@ func _on_timer_timeout() -> void:
 		if time_to_upgrade <= 0:
 			time_to_upgrade = 0
 			$Garden/UpgradeSpot/UpgradeIndicator.visible = true
-		$HUD/ProgressBar.value = (1 - time_to_upgrade/(float(60*(upgrades+1))))*100
+		$HUD/ProgressBar.value = (1 - time_to_upgrade/(float(upgrade_base_timer*(upgrades+1))))*100
 	
-	if randi_range(1, 10 + upgrades) >= 10:
+	if randi_range(upgrades, 12) >= 10:
 		$Garden.make_weed()
+
+func upgrade_update(upgrade_amount : int):
+	upgrades = upgrade_amount
+	time_to_upgrade = upgrade_base_timer * (upgrades + 1)
+	$HUD/ProgressBar.value = 0

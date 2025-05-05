@@ -88,5 +88,5 @@ func punch():
 
 
 func _on_detector_body_entered(body: Node3D) -> void:
-	if body.is_in_group("Destroyable"):
+	if body.is_in_group("Destroyable") and target == null:
 		target = body

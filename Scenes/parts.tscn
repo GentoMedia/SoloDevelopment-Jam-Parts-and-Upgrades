@@ -22,22 +22,22 @@ tracks/0/path = NodePath("Part:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.501856, 0.999622, 1.50254, 2),
+"times": PackedFloat32Array(0, 0.501856, 0.999622, 1.53333, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Part:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.501856, 0.999622, 1.50254, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.523599, 0, 0), Vector3(0.523599, 1.5708, 0), Vector3(0.523599, 3.14159, 0), Vector3(0.523599, 4.71239, 0), Vector3(0.523599, 6.28319, 0)]
+"values": [Vector3(0.523599, 0, 0), Vector3(0.523599, 6.28319, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5vw27"]
@@ -82,8 +82,8 @@ billboard_mode = 1
 
 [sub_resource type="SphereMesh" id="SphereMesh_4c57u"]
 material = SubResource("StandardMaterial3D_kek77")
-radius = 0.02
-height = 0.04
+radius = 0.04
+height = 0.08
 radial_segments = 6
 rings = 3
 

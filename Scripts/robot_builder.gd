@@ -4,11 +4,12 @@ extends StaticBody3D
 
 @onready var main = get_node("/root/Main")
 @onready var robot = preload("res://Scenes/robot.tscn")
+signal new_robots
 
 func _ready() -> void:
 	$AnimationPlayer.play("Normal")
 
-func hit_machine(damage : int):
+func hit_machine(_damage : int):
 	$AnimationPlayer.play("Hit")
 	if main.materials["parts"] >= cost["parts"]:
 		if main.materials["rubber"] >= cost["rubber"]:
@@ -25,6 +26,7 @@ func make_robot():
 	var new_robot = robot.instantiate()
 	get_node("/root/Main/Garden/Robots").add_child(new_robot)
 	new_robot.position = Vector3(-15.0, 0.5, -1.0)
+	new_robots.emit()
 
 func reset_animation():
 	$AnimationPlayer.play("Normal")

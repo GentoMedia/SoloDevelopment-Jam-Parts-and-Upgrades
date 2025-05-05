@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://beq3kqicutqsg"]
+
+[ext_resource type="PackedScene" uid="uid://bfw7wqnc0k7cx" path="res://Scenes/junk_spawner.tscn" id="1_m1jgq"]
+
+[node name="JunkSpawners" type="Node3D"]
+
+[node name="JunkSpawner" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -4)
+
+[node name="JunkSpawner2" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, -4)
+
+[node name="JunkSpawner3" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -4)
+
+[node name="JunkSpawner4" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -12)
+
+[node name="JunkSpawner5" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 0, -12)
+
+[node name="JunkSpawner6" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 0, -4)
+
+[node name="JunkSpawner7" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, -4)
+
+[node name="JunkSpawner8" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -4)
+
+[node name="JunkSpawner9" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -12)
+
+[node name="JunkSpawner10" parent="." instance=ExtResource("1_m1jgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -4)

@@ -5,7 +5,7 @@ var material = "parts"
 func _ready() -> void:
 	$AnimationPlayer.play("Powerup")
 
-func _on_body_entered(body: Node3D) -> void:
+func _on_body_entered(_body: Node3D) -> void:
 	get_node("/root/Main").update_materials(material, 1)
 	queue_free()
 
