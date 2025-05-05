@@ -16,6 +16,7 @@ func hit_machine(_damage : int):
 			if main.materials["oil"] >= cost["oil"]:
 				if main.materials["water"] >= cost["water"]:
 					make_robot()
+					$AudioStreamPlayer3D.play()
 					main.update_materials("parts", -cost["parts"])
 					main.update_materials("rubber", -cost["rubber"])
 					main.update_materials("oil", -cost["oil"])

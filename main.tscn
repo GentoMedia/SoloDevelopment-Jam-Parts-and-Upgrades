@@ -1,13 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://tmy4tqognhxm"]
+[gd_scene load_steps=12 format=3 uid="uid://tmy4tqognhxm"]
 
 [ext_resource type="Script" uid="uid://dkjpqbdvcfj7l" path="res://main.gd" id="1_kek77"]
 [ext_resource type="PackedScene" uid="uid://caf7e0f235amn" path="res://Scenes/garden.tscn" id="2_0xm2m"]
+[ext_resource type="AudioStream" uid="uid://jod54cf160v7" path="res://Assets/Sound/UpgradeReady.ogg" id="3_h2yge"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
 bg_color = Color(0.945312, 0, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(1, 0.986084, 0.109375, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0.125, 1, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.125, 1, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
+bg_color = Color(0, 0.4375, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="InputEventAction" id="InputEventAction_h2yge"]
+action = &"ui_accept"
+
+[sub_resource type="Shortcut" id="Shortcut_1bvp3"]
+events = [SubResource("InputEventAction_h2yge")]
 
 [node name="Main" type="Node3D"]
 process_mode = 3
@@ -42,8 +77,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = 299.0
-offset_bottom = 333.0
+offset_left = 1.0
+offset_top = 286.0
+offset_right = 1.0
+offset_bottom = 331.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 16
@@ -64,6 +101,7 @@ size_flags_horizontal = 3
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Gear: 0"
+horizontal_alignment = 1
 
 [node name="RubberLabel" type="Label" parent="HUD/ResourceLabels"]
 layout_mode = 2
@@ -71,6 +109,7 @@ size_flags_horizontal = 3
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Rubber: 0"
+horizontal_alignment = 1
 
 [node name="OilLabel" type="Label" parent="HUD/ResourceLabels"]
 layout_mode = 2
@@ -78,6 +117,7 @@ size_flags_horizontal = 3
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Oil: 0"
+horizontal_alignment = 1
 
 [node name="WaterLabel" type="Label" parent="HUD/ResourceLabels"]
 layout_mode = 2
@@ -85,6 +125,48 @@ size_flags_horizontal = 3
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Water: 0"
+horizontal_alignment = 1
+
+[node name="PauseScrene" type="RichTextLabel" parent="HUD"]
+process_mode = 2
+custom_minimum_size = Vector2(960, 450)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/normal_font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_272bh")
+text = "
+Care for The Upgrade Tree and it will care for you."
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="HUD/PauseScrene"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = 40.0
+offset_right = 213.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_1bvp3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lquwl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7mycd")
+shortcut = SubResource("Shortcut_1bvp3")
+text = "Start"
 
 [node name="Garden" parent="." instance=ExtResource("2_0xm2m")]
 
@@ -94,5 +176,11 @@ process_mode = 1
 [node name="Timer" type="Timer" parent="GameLogic"]
 autostart = true
 
+[node name="UpgradeReadyBell" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_h2yge")
+attenuation_model = 3
+max_db = 0.0
+
+[connection signal="pressed" from="HUD/PauseScrene/Button" to="." method="toggle_pause"]
 [connection signal="upgraded" from="Garden" to="." method="upgrade_update"]
 [connection signal="timeout" from="GameLogic/Timer" to="." method="_on_timer_timeout"]

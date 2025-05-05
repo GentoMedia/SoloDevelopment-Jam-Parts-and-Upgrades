@@ -57,6 +57,7 @@ func _physics_process(delta: float) -> void:
 				new_robot.position = position + Vector3(1, 0 ,0)
 			$RobotIndicator.visible = false
 			new_robots.emit()
+			$RobotPickup.play()
 		
 		
 
@@ -72,6 +73,7 @@ func hit_object():
 			if body.is_in_group("Destroyable"):
 				body.hit_machine(attack)
 			if body.is_in_group("Robot") and not $RobotIndicator.visible:
+				$RobotPickup.play()
 				body.queue_free()
 				$RobotIndicator.visible = true
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://v51lgu8vn4ar"]
+[gd_scene load_steps=13 format=3 uid="uid://v51lgu8vn4ar"]
 
 [ext_resource type="Script" uid="uid://caopfplohmjrw" path="res://Scripts/robot.gd" id="1_2vrla"]
 [ext_resource type="Texture2D" uid="uid://deqktnnfp2t12" path="res://Assets/Characters/Robots/robot_yellowDrive1.png" id="2_7cjo4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ce6b8y4hcb7l6" path="res://Assets/Characters/Robots/robot_blueDrive2.png" id="5_pwfsi"]
 [ext_resource type="Texture2D" uid="uid://cd12ncgp27xtq" path="res://Assets/Characters/Robots/robot_redDrive1.png" id="6_rnk85"]
 [ext_resource type="Texture2D" uid="uid://bm4xltg0voxwu" path="res://Assets/Characters/Robots/robot_redDrive2.png" id="7_aseuk"]
+[ext_resource type="AudioStream" uid="uid://bd1xjt86hpc88" path="res://Assets/Sound/engine4.ogg" id="8_dcvsp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7cjo4"]
 radius = 0.446284
@@ -93,6 +94,12 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Detector"]
 shape = SubResource("CylinderShape3D_7cjo4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_dcvsp")
+unit_size = 1.0
+max_db = -18.0
+panning_strength = 0.5
 
 [connection signal="body_entered" from="HitRight" to="." method="_on_hit_right_body_entered"]
 [connection signal="body_exited" from="HitRight" to="." method="_on_hit_right_body_exited"]

@@ -26,7 +26,9 @@ func activate_upgrade(upgrade : String):
 		if upgrade == "RobotEfficiency":
 			update_robots()
 		$UpgradeSpot/UpgradeIndicator.visible = false
+		$UpgradeTree/AudioStreamPlayer3D.play()
 		upgraded.emit(upgrades["PlayerAttack"] + upgrades["PlayerSpeed"] + upgrades["RobotEfficiency"])
+		
 
 func update_robots():
 	for robot in $Robots.get_children():

@@ -31,10 +31,12 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 		$AnimatedSprite3D.play(robot_type)
+		$AudioStreamPlayer3D.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 		$AnimatedSprite3D.pause()
+		$AudioStreamPlayer3D.stop()
 		
 	# Animation
 	if velocity.x > 0:

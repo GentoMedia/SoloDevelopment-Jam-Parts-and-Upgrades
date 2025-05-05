@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbc3bmu5diy5g"]
+[gd_scene load_steps=12 format=3 uid="uid://cbc3bmu5diy5g"]
 
 [ext_resource type="Script" uid="uid://dg76lqy2txmtv" path="res://Scripts/machines.gd" id="1_nmd0n"]
+[ext_resource type="AudioStream" uid="uid://8ifpmtatscvc" path="res://Assets/Sound/MachineHit.ogg" id="2_bqwna"]
+[ext_resource type="AudioStream" uid="uid://b8ab2wicm0sky" path="res://Assets/Sound/MachineBreak.ogg" id="3_pdrqx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_272bh"]
 
@@ -49,6 +51,30 @@ tracks/3/path = NodePath("CollisionShape3D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DestroySound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -107,6 +133,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DestroySound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_nmd0n"]
 resource_name = "hit"
@@ -122,6 +160,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(0.8, 0.8, 0.8), Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ycdy4"]
@@ -157,6 +207,7 @@ libraries = {
 }
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 emitting = false
 lifetime = 0.42
 mesh = SubResource("PrismMesh_dg77c")
@@ -171,3 +222,15 @@ initial_velocity_max = 4.0
 angular_velocity_min = 425.97
 angular_velocity_max = 720.0
 scale_amount_max = 1.5
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_bqwna")
+unit_size = 1.0
+max_db = -8.0
+pitch_scale = 0.7
+
+[node name="DestroySound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_pdrqx")
+unit_size = 1.0
+max_db = -8.0
+pitch_scale = 2.0
