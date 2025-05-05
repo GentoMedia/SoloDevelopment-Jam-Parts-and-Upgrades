@@ -25,10 +25,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 		$AnimatedSprite3D.play("walk")
+		if $Footsteps/Timer.is_stopped():
+			$Footsteps/Timer.start()
+			$Footsteps.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 		$AnimatedSprite3D.play("idle")
+		if not $Footsteps/Timer.is_stopped():
+			$Footsteps/Timer.stop()
+			$Footsteps.play()
 		
 	# Animation
 	if velocity.x > 0:
