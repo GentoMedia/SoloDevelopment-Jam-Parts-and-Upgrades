@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd12ncgp27xtq"
 path.s3tc="res://.godot/imported/robot_redDrive1.png-ec7a7c7caf4d8743239a124434acfc45.s3tc.ctex"
+path.etc2="res://.godot/imported/robot_redDrive1.png-ec7a7c7caf4d8743239a124434acfc45.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Characters/Robots/robot_redDrive1.png"
-dest_files=["res://.godot/imported/robot_redDrive1.png-ec7a7c7caf4d8743239a124434acfc45.s3tc.ctex"]
+dest_files=["res://.godot/imported/robot_redDrive1.png-ec7a7c7caf4d8743239a124434acfc45.s3tc.ctex", "res://.godot/imported/robot_redDrive1.png-ec7a7c7caf4d8743239a124434acfc45.etc2.ctex"]
 
 [params]
 

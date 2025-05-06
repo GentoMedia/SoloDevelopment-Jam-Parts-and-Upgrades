@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://deqktnnfp2t12"
 path.s3tc="res://.godot/imported/robot_yellowDrive1.png-bb71d5b41a499c5331edb43c9d33b8d3.s3tc.ctex"
+path.etc2="res://.godot/imported/robot_yellowDrive1.png-bb71d5b41a499c5331edb43c9d33b8d3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Characters/Robots/robot_yellowDrive1.png"
-dest_files=["res://.godot/imported/robot_yellowDrive1.png-bb71d5b41a499c5331edb43c9d33b8d3.s3tc.ctex"]
+dest_files=["res://.godot/imported/robot_yellowDrive1.png-bb71d5b41a499c5331edb43c9d33b8d3.s3tc.ctex", "res://.godot/imported/robot_yellowDrive1.png-bb71d5b41a499c5331edb43c9d33b8d3.etc2.ctex"]
 
 [params]
 
